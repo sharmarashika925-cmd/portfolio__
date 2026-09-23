@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Rivera | Freelance Developer & Digital Creator</title>
+  <meta name="description" content="Portfolio of Alex Rivera, freelance web developer and UI designer specializing in high-speed, modern websites." />
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Custom Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#0b1120',
+            brandCard: '#1e293b',
+            brandCardBorder: '#334155',
+            brandAccent: '#38bdf8',
+            brandEmerald: '#10b981',
+            brandSlate: '#94a3b8'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom glow and subtle transition styles */
+    .glow-accent {
+      box-shadow: 0 0 25px -5px rgba(56, 189, 248, 0.35);
+    }
+    .glow-emerald {
+      box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+    }
+    .card-hover {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      border-color: #38bdf8;
+      box-shadow: 0 16px 32px -12px rgba(15, 23, 42, 0.8), 0 0 20px -6px rgba(56, 189, 248, 0.2);
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b1120;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+  </style>
+</head>
+
+<body class="bg-brandDark text-slate-100 font-sans antialiased min-h-screen selection:bg-brandAccent selection:text-slate-900">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-brandDark/85 border-b border-slate-800/80 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo / Badge -->
+      <a href="#" class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-brandAccent rounded-lg p-1">
+        <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brandAccent to-brandEmerald flex items-center justify-center font-extrabold text-slate-950 text-sm shadow-md transition-transform group-hover:scale-105">
+          AR
+        </span>
+        <span class="font-bold text-lg tracking-tight text-white group-hover:text-brandAccent transition-colors">
+          Alex<span class="text-brandAccent">.dev</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-brandAccent transition-colors">About</a>
+        <a href="#skills" class="hover:text-brandAccent transition-colors">Skills</a>
+        <a href="#work" class="hover:text-brandAccent transition-colors">Work</a>
+        <a href="#whyme" class="hover:text-brandAccent transition-colors">Why Me</a>
+        <a href="#contact" class="hover:text-brandAccent transition-colors">Contact</a>
+      </nav>
+
+      <!-- Desktop Status & CTA -->
+      <div class="hidden md:flex items-center gap-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/70 border border-emerald-500/30 text-xs font-medium text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Available for Hire
+        </div>
+        <a href="#contact" class="px-4 py-2 rounded-lg bg-brandAccent text-slate-950 text-sm font-semibold hover:bg-sky-400 active:scale-95 transition-all shadow-sm">
+          Let's Talk
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button 
+        id="mobileMenuBtn" 
+        type="button" 
+        aria-label="Toggle mobile menu" 
+        class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brandAccent"
+      >
+        <svg id="hamburgerIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Slide-down Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-b border-slate-800 bg-brandDark/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3">
+      <div class="flex items-center gap-2 pb-2 px-2 text-xs font-medium text-emerald-400">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Available for internships & freelance jobs
+      </div>
+      <a href="#about" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brandAccent mobile-link">About</a>
+      <a href="#skills" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brandAccent mobile-link">Skills</a>
+      <a href="#work" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brandAccent mobile-link">Work</a>
+      <a href="#whyme" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brandAccent mobile-link">Why Me</a>
+      <a href="#contact" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brandAccent mobile-link">Contact</a>
+      <div class="pt-2">
+        <a href="#contact" class="block text-center w-full px-4 py-2.5 rounded-lg bg-brandAccent text-slate-950 font-semibold mobile-link">
+          Get In Touch
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative pt-12 pb-20 md:pt-24 md:pb-28 overflow-hidden">
+      <!-- Background Ambient Glows -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brandAccent/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <div class="absolute top-1/3 right-10 w-72 h-72 bg-brandEmerald/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        
+        <!-- Profile Avatar with Glow Ring -->
+        <div class="relative mb-6 group">
+          <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-tr from-brandAccent via-sky-500 to-brandEmerald glow-accent transition-transform duration-300 group-hover:scale-105">
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" 
+              alt="Alex Rivera - Developer Portrait" 
+              class="w-full h-full object-cover rounded-full bg-slate-800"
+              onerror="this.src='https://ui-avatars.com/api/?name=Alex+Rivera&background=0b1120&color=38bdf8&size=256'"
+            />
+          </div>
+          <span class="absolute bottom-1 right-1 bg-brandDark text-emerald-400 p-1.5 rounded-full border border-slate-700 shadow" title="Open to opportunities">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-3xl leading-tight">
+          Building <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandAccent via-sky-300 to-brandEmerald">Clean Digital Experiences</span> That Convert.
+        </h1>
+
+        <!-- Engaging Subheadline -->
+        <p class="mt-6 text-base sm:text-xl text-slate-300 max-w-2xl leading-relaxed">
+          Hey, I'm Alex. A high-energy freelance developer & teenlancer creating lightning-fast landing pages, modern web apps, and polished interfaces for businesses and creators.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <a href="#work" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-brandAccent text-slate-950 font-bold hover:bg-sky-400 active:scale-95 transition-all text-center shadow-lg shadow-sky-500/20">
+            View My Work
+          </a>
+          <a href="#contact" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-800/80 border border-slate-700 text-white font-semibold hover:border-slate-500 hover:bg-slate-800 active:scale-95 transition-all text-center">
+            Get In Touch
+          </a>
+        </div>
+
+        <!-- Quick Stats Banner -->
+        <div class="mt-14 w-full max-w-3xl grid grid-cols-3 gap-3 p-4 sm:p-6 rounded-2xl bg-brandCard/60 border border-brandCardBorder backdrop-blur-sm">
+          <div class="text-center border-r border-slate-700/60 last:border-none">
+            <p class="text-xl sm:text-3xl font-extrabold text-brandAccent">15+</p>
+            <p class="text-xs sm:text-sm font-medium text-slate-400 mt-1">Projects Built</p>
+          </div>
+          <div class="text-center border-r border-slate-700/60 last:border-none">
+            <p class="text-xl sm:text-3xl font-extrabold text-brandEmerald">100%</p>
+            <p class="text-xs sm:text-sm font-medium text-slate-400 mt-1">On-Time Delivery</p>
+          </div>
+          <div class="text-center">
+            <p class="text-xl sm:text-3xl font-extrabold text-sky-300">&lt; 24h</p>
+            <p class="text-xs sm:text-sm font-medium text-slate-400 mt-1">Response Time</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 border-t border-slate-800/80 bg-slate-900/30">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+          <!-- Text Content -->
+          <div class="md:col-span-7 space-y-5">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-brandAccent text-xs font-semibold uppercase tracking-wider">
+              About Me
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight">
+              Driven by curiosity, fueled by clean code and fast results.
+            </h2>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              I am an independent developer and student freelancer who bridges the gap between clean visual design and responsive front-end code. I don't build bloated websites with hundreds of unnecessary plugins — I write lightweight, semantic code optimized for mobile screens, fast loading speeds, and real client goals.
+            </p>
+            <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+              Whether you need an MVP landing page for your startup, a redesign of an outdated interface, or a custom component that works seamlessly across all devices, I bring swift execution, total transparency, and hunger to exceed expectations.
+            </p>
+
+            <!-- Quick Highlight Badges -->
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs font-medium text-slate-200">
+                🚀 Full-Stack Learner
+              </span>
+              <span class="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs font-medium text-slate-200">
+                🎯 Problem Solver
+              </span>
+              <span class="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs font-medium text-slate-200">
+                ⚡ Rapid Iteration
+              </span>
+              <span class="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs font-medium text-slate-200">
+                🔍 Detail Oriented
+              </span>
+            </div>
+          </div>
+
+          <!-- Infographic / Focus Card -->
+          <div class="md:col-span-5">
+            <div class="rounded-2xl p-6 bg-brandCard border border-brandCardBorder space-y-4">
+              <h3 class="text-base font-semibold text-white flex items-center gap-2">
+                <svg class="w-5 h-5 text-brandEmerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                My Core Guarantees
+              </h3>
+              <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-brandAccent font-bold">✓</span>
+                  <span><strong>Mobile-First Code:</strong> Optimized on iOS & Android devices first.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-brandAccent font-bold">✓</span>
+                  <span><strong>Speed by Default:</strong> Clean DOM structure and minimal bloat.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-brandAccent font-bold">✓</span>
+                  <span><strong>Direct Interaction:</strong> No middle managers, immediate responses.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-brandAccent font-bold">✓</span>
+                  <span><strong>Ready for Production:</strong> Git-ready code primed for deployment.</span>
+                </li>
+              </ul>
+              <div class="pt-2 border-t border-slate-700/60">
+                <span class="text-xs text-slate-400">Current Timezone: <strong class="text-slate-200">UTC-5 / EST (Flexible global hours)</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills" class="py-16 md:py-24 border-t border-slate-800/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-brandEmerald text-xs font-semibold uppercase tracking-wider mb-2">
+            Expertise & Services
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight">
+            What I Bring To Your Team
+          </h2>
+          <p class="mt-3 text-slate-400 text-sm sm:text-base">
+            From wireframe concepts to fully functional, deployed web experiences.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Card 1: Web Development -->
+          <div class="p-6 rounded-2xl bg-brandCard border border-brandCardBorder card-hover flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-brandAccent flex items-center justify-center mb-5">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Web Development</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mb-4">
+                Creating responsive, maintainable websites with modern standards.
+              </p>
+              <ul class="text-xs text-slate-300 space-y-2">
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brandAccent"></span>HTML5, CSS3, ES6+ JavaScript</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brandAccent"></span>Tailwind CSS & CSS Grid</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brandAccent"></span>React & Component Architecture</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brandAccent"></span>Git & GitHub Pages Deployments</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-700/50 text-[11px] font-semibold text-brandAccent uppercase tracking-wider">
+              Clean Code First
+            </div>
+          </div>
+
+          <!-- Card 2: UI/UX Design -->
+          <div class="p-6 rounded-2xl bg-brandCard border border-brandCardBorder card-hover flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-brandEmerald flex items-center justify-center mb-5">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">UI/UX Design</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mb-4">
+                User-friendly interfaces crafted for clarity and engagement.
+              </p>
+              <ul class="text-xs text-slate-300 space-y-2">
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brandEmerald"></span>Wireframing & Prototyping</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brandEmerald"></span>Figma to Functional Code</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brandEmerald"></span>Micro-interactions & Animations</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brandEmerald"></span>Accessibility (WCAG) Mindset</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-700/50 text-[11px] font-semibold text-brandEmerald uppercase tracking-wider">
+              Pixel Perfection
+            </div>
+          </div>
+
+          <!-- Card 3: Content Strategy -->
+          <div class="p-6 rounded-2xl bg-brandCard border border-brandCardBorder card-hover flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-5">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Content Strategy</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mb-4">
+                Punchy, persuasive copy that communicates value in seconds.
+              </p>
+              <ul class="text-xs text-slate-300 space-y-2">
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Landing Page Copywriting</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Technical Documentation</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Value Proposition Clarity</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Audience-Targeted Messaging</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-700/50 text-[11px] font-semibold text-purple-400 uppercase tracking-wider">
+              Compelling Narratives
+            </div>
+          </div>
+
+          <!-- Card 4: SEO & Speed Optimization -->
+          <div class="p-6 rounded-2xl bg-brandCard border border-brandCardBorder card-hover flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-5">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">SEO & Speed</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mb-4">
+                Fast loading times to improve search ranking and user retention.
+              </p>
+              <ul class="text-xs text-slate-300 space-y-2">
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Core Web Vitals Optimization</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Semantic SEO & OpenGraph</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Asset Compression & Caching</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Mobile Performance Tuning</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-700/50 text-[11px] font-semibold text-amber-400 uppercase tracking-wider">
+              High Performance
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="work" class="py-16 md:py-24 border-t border-slate-800/80 bg-slate-900/30">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-brandAccent text-xs font-semibold uppercase tracking-wider mb-2">
+              Portfolio Portfolio
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight">
+              Featured Client & Personal Projects
+            </h2>
+          </div>
+          <p class="text-slate-400 text-sm mt-2 md:mt-0 max-w-sm">
+            Real implementations emphasizing clean user journeys, responsiveness, and speed.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Project 1 -->
+          <article class="rounded-2xl bg-brandCard border border-brandCardBorder overflow-hidden card-hover flex flex-col">
+            <div class="relative h-48 overflow-hidden bg-slate-800 group">
+              <img 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80" 
+                alt="Modern SaaS Landing Page preview" 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=SaaS+Landing+Page'"
+              />
+              <div class="absolute top-3 right-3 bg-brandDark/80 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-semibold text-brandAccent border border-slate-700">
+                Landing Page
+              </div>
+            </div>
+            
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[11px] font-medium text-sky-300 border border-slate-700">HTML/CSS</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[11px] font-medium text-emerald-300 border border-slate-700">Tailwind</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[11px] font-medium text-slate-300 border border-slate-700">Responsive</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Modern SaaS Product Showcase</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                  A high-converting B2B SaaS landing page featuring dynamic pricing toggles, testimonial carousel, and friction-free sign-up CTAs.
+                </p>
+              </div>
+
+              <div class="flex items-center gap-3 pt-4 border-t border-slate-700/60">
+                <a 
+                  href="https://github.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="flex-1 text-center py-2 px-3 rounded-lg bg-brandAccent text-slate-950 font-semibold text-xs hover:bg-sky-400 transition-colors flex items-center justify-center gap-1.5"
+                >
+                  Live Preview
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a 
+                  href="https://github.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="py-2 px-3 rounded-lg bg-slate-800 text-slate-300 font-medium text-xs hover:text-white hover:bg-slate-700 transition-colors border border-slate-700"
+                >
+                  Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="rounded-2xl bg-brandCard border border-brandCardBorder overflow-hidden card-hover flex flex-col">
+            <div class="relative h-48 overflow-hidden bg-slate-800 group">
+              <img 
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80" 
+                alt="Interactive Task & Study Dashboard preview" 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onerror="this.src='https://placehold.co/600x400/1e293b/10b981?text=Study+Dashboard'"
+              />
+              <div class="absolute top-3 right-3 bg-brandDark/80 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-semibold text-emerald-400 border border-slate-700">
+                Web App
+              </div>
+            </div>
+            
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[11px] font-medium text-amber-300 border border-slate-700">JavaScript</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[11px] font-medium text-sky-300 border border-slate-700">UI/UX</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[11px] font-medium text-slate-300 border border-slate-700">LocalStorage</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Interactive Study & Task Tracker</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                  Productivity web tool built for high-focus students with Pomodoro timing, persistent task lists, and weekly completion metrics.
+                </p>
+              </div>
+
+              <div class="flex items-center gap-3 pt-4 border-t border-slate-700/60">
+                <a 
+                  href="https://github.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="flex-1 text-center py-2 px-3 rounded-lg bg-brandAccent text-slate-950 font-semibold text-xs hover:bg-sky-400 transition-colors flex items-center justify-center gap-1.5"
+                >
+                  Live Preview
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a 
+                  href="https://github.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="py-2 px-3 rounded-lg bg-slate-800 text-slate-300 font-medium text-xs hover:text-white hover:bg-slate-700 transition-colors border border-slate-700"
+                >
+                  Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="rounded-2xl bg-brandCard border border-brandCardBorder overflow-hidden card-hover flex flex-col">
+            <div class="relative h-48 overflow-hidden bg-slate-800 group">
+              <img 
+                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80" 
+                alt="Niche E-Commerce Showcase preview" 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onerror="this.src='https://placehold.co/600x400/1e293b/a855f7?text=Store+Showcase'"
+              />
+              <div class="absolute top-3 right-3 bg-brandDark/80 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-semibold text-purple-400 border border-slate-700">
+                E-Commerce
+              </div>
+            </div>
+            
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[11px] font-medium text-purple-300 border border-slate-700">CSS Grid</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[11px] font-medium text-emerald-300 border border-slate-700">Performance</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[11px] font-medium text-sky-300 border border-slate-700">SEO</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Artisan Goods Product Catalog</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                  Minimalist catalog showcase with fluid category filtering, lightning quick image loading, and instant cart drawer UI.
+                </p>
+              </div>
+
+              <div class="flex items-center gap-3 pt-4 border-t border-slate-700/60">
+                <a 
+                  href="https://github.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="flex-1 text-center py-2 px-3 rounded-lg bg-brandAccent text-slate-950 font-semibold text-xs hover:bg-sky-400 transition-colors flex items-center justify-center gap-1.5"
+                >
+                  Live Preview
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a 
+                  href="https://github.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="py-2 px-3 rounded-lg bg-slate-800 text-slate-300 font-medium text-xs hover:text-white hover:bg-slate-700 transition-colors border border-slate-700"
+                >
+                  Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="whyme" class="py-16 md:py-24 border-t border-slate-800/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-brandEmerald text-xs font-semibold uppercase tracking-wider mb-2">
+            The Teenlancer Advantage
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight">
+            Why Work With Me?
+          </h2>
+          <p class="mt-3 text-slate-400 text-sm sm:text-base">
+            Agencies come with overhead and delays. Here is why hiring me directly gives you an edge.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Pillar 1 -->
+          <div class="p-8 rounded-2xl bg-brandCard border border-brandCardBorder card-hover text-left">
+            <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-brandAccent flex items-center justify-center mb-6 text-2xl font-bold">
+              ⚡
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Fast Turnaround</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              No endless meetings or bureaucracy. I work in focused, daily sprints so you get working prototypes and finished assets in days, not months.
+            </p>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="p-8 rounded-2xl bg-brandCard border border-brandCardBorder card-hover text-left">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-brandEmerald flex items-center justify-center mb-6 text-2xl font-bold">
+              💰
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Freelancer & Friendly Rates</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              High-tier quality without agency markups. Transparent, project-based or milestone-based pricing that delivers high return on investment for small budgets.
+            </p>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="p-8 rounded-2xl bg-brandCard border border-brandCardBorder card-hover text-left">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-6 text-2xl font-bold">
+              🤝
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Direct Communication</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              You speak directly to the person writing every single line of code. Expect regular video/text updates, fast revisions, and zero guesswork.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact" class="py-16 md:py-24 border-t border-slate-800/80 bg-slate-900/30">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-xl mx-auto mb-12">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-brandAccent text-xs font-semibold uppercase tracking-wider mb-2">
+            Get In Touch
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight">
+            Have a Project or Internship in Mind?
+          </h2>
+          <p class="mt-3 text-slate-400 text-sm sm:text-base">
+            Drop a message below or reach out directly. I usually reply within a few hours.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          
+          <!-- Direct Contact Information -->
+          <div class="md:col-span-5 space-y-4">
+            
+            <div class="p-6 rounded-2xl bg-brandCard border border-brandCardBorder">
+              <h3 class="text-lg font-bold text-white mb-4">Direct Contact Channels</h3>
+              
+              <div class="space-y-4 text-sm">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-sky-500/10 text-brandAccent flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-xs text-slate-400">Email Address</p>
+                    <a href="mailto:alex@riveradev.com" class="font-medium text-slate-200 hover:text-brandAccent transition-colors">alex@riveradev.com</a>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-brandEmerald flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-xs text-slate-400">Discord / Telegram</p>
+                    <p class="font-medium text-slate-200">@alex_riveradev</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-xs text-slate-400">Location & Availability</p>
+                    <p class="font-medium text-slate-200">Remote Worldwide</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Fast note -->
+            <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700/60 text-xs text-slate-300">
+              💡 <strong>Hiring for an internship?</strong> I can provide code samples, academic references, and can begin immediately with flexible part-time hours.
+            </div>
+
+          </div>
+
+          <!-- Contact Form Card -->
+          <div class="md:col-span-7">
+            <div class="p-6 sm:p-8 rounded-2xl bg-brandCard border border-brandCardBorder relative">
+              
+              <!-- Form Success Message Toast / Overlay -->
+              <div id="formSuccessToast" class="hidden mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-start gap-3">
+                <svg class="w-5 h-5 mt-0.5 flex-shrink-0 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div class="text-sm">
+                  <p class="font-semibold text-white">Message dispatched successfully!</p>
+                  <p class="text-emerald-300/90 text-xs mt-0.5">Thank you for reaching out. Alex will review your note and respond within 24 hours.</p>
+                </div>
+              </div>
+
+              <!-- Actual Form -->
+              <form id="portfolioContactForm" novalidate class="space-y-4">
+                
+                <!-- Name Field -->
+                <div>
+                  <label for="userName" class="block text-xs font-medium text-slate-300 mb-1.5">
+                    Your Name <span class="text-brandAccent">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id="userName" 
+                    name="userName" 
+                    placeholder="e.g. Sarah Jenkins" 
+                    class="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brandAccent focus:ring-1 focus:ring-brandAccent text-sm transition-colors"
+                  />
+                  <p id="nameError" class="hidden text-xs text-rose-400 mt-1">Please enter your name.</p>
+                </div>
+
+                <!-- Email Field -->
+                <div>
+                  <label for="userEmail" class="block text-xs font-medium text-slate-300 mb-1.5">
+                    Your Email Address <span class="text-brandAccent">*</span>
+                  </label>
+                  <input 
+                    type="email" 
+                    id="userEmail" 
+                    name="userEmail" 
+                    placeholder="e.g. sarah@company.com" 
+                    class="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brandAccent focus:ring-1 focus:ring-brandAccent text-sm transition-colors"
+                  />
+                  <p id="emailError" class="hidden text-xs text-rose-400 mt-1">Please provide a valid email address.</p>
+                </div>
+
+                <!-- Project Type / Subject -->
+                <div>
+                  <label for="projectType" class="block text-xs font-medium text-slate-300 mb-1.5">
+                    Project / Inquirer Category
+                  </label>
+                  <select 
+                    id="projectType" 
+                    name="projectType" 
+                    class="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-brandAccent focus:ring-1 focus:ring-brandAccent text-sm transition-colors"
+                  >
+                    <option value="Landing Page">Landing Page Development</option>
+                    <option value="Internship Offer">Internship Opportunity</option>
+                    <option value="Website Redesign">Website Redesign / UI</option>
+                    <option value="Other">Other / General Question</option>
+                  </select>
+                </div>
+
+                <!-- Message Field -->
+                <div>
+                  <label for="userMessage" class="block text-xs font-medium text-slate-300 mb-1.5">
+                    Project Details / Message <span class="text-brandAccent">*</span>
+                  </label>
+                  <textarea 
+                    id="userMessage" 
+                    name="userMessage" 
+                    rows="4" 
+                    placeholder="Tell me a bit about your timeline, goals, or role..." 
+                    class="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brandAccent focus:ring-1 focus:ring-brandAccent text-sm transition-colors resize-y"
+                  ></textarea>
+                  <p id="messageError" class="hidden text-xs text-rose-400 mt-1">Please enter a brief message (at least 10 characters).</p>
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                  type="submit" 
+                  id="submitBtn" 
+                  class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-brandAccent to-sky-400 text-slate-950 font-bold text-sm hover:opacity-95 active:scale-95 transition-all shadow-md flex items-center justify-center gap-2"
+                >
+                  <span id="btnText">Send Inquiry</span>
+                  <svg id="btnSpinner" class="w-4 h-4 animate-spin hidden text-slate-950" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                  </svg>
+                </button>
+
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-800 bg-brandDark py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Brand Info -->
+        <div class="flex items-center gap-3">
+          <span class="w-7 h-7 rounded-md bg-gradient-to-tr from-brandAccent to-brandEmerald flex items-center justify-center font-bold text-slate-950 text-xs">
+            AR
+          </span>
+          <span class="text-sm font-semibold text-white">
+            Alex Rivera <span class="text-slate-500 font-normal">| Web Developer & Designer</span>
+          </span>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="flex items-center gap-6 text-xs text-slate-400">
+          <a href="#about" class="hover:text-brandAccent transition-colors">About</a>
+          <a href="#skills" class="hover:text-brandAccent transition-colors">Skills</a>
+          <a href="#work" class="hover:text-brandAccent transition-colors">Work</a>
+          <a href="#contact" class="hover:text-brandAccent transition-colors">Contact</a>
+        </div>
+
+        <!-- Social Icons (Inline SVGs) -->
+        <div class="flex items-center gap-4 text-slate-400">
+          <!-- GitHub -->
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 hover:text-brandAccent transition-colors">
+            <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 hover:text-brandAccent transition-colors">
+            <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+
+          <!-- Twitter / X -->
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile" class="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 hover:text-brandAccent transition-colors">
+            <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+
+          <!-- Email -->
+          <a href="mailto:alex@riveradev.com" aria-label="Send direct email" class="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 hover:text-brandAccent transition-colors">
+            <svg class="w-4 h-4 fill-none stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Copyright Notice -->
+      <div class="mt-8 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+        <p>© 2026 Alex Rivera. All rights reserved.</p>
+        <p>Built with semantic HTML, Tailwind CSS, & zero build tools for instant GitHub Pages deployment.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Mobile Menu Functionality
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const hamburgerIcon = document.getElementById('hamburgerIcon');
+      const closeIcon = document.getElementById('closeIcon');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      function toggleMobileMenu() {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          hamburgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+      // Close mobile menu whenever any link inside it is tapped
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (!mobileMenu.classList.contains('hidden')) {
+            toggleMobileMenu();
+          }
+        });
+      });
+
+      // 2. Client-Side Contact Form Validation & Submission
+      const form = document.getElementById('portfolioContactForm');
+      const nameInput = document.getElementById('userName');
+      const emailInput = document.getElementById('userEmail');
+      const messageInput = document.getElementById('userMessage');
+
+      const nameError = document.getElementById('nameError');
+      const emailError = document.getElementById('emailError');
+      const messageError = document.getElementById('messageError');
+
+      const successToast = document.getElementById('formSuccessToast');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnSpinner = document.getElementById('btnSpinner');
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        // Name Validation
+        if (!nameInput.value.trim()) {
+          nameError.classList.remove('hidden');
+          nameInput.classList.add('border-rose-500');
+          isValid = false;
+        } else {
+          nameError.classList.add('hidden');
+          nameInput.classList.remove('border-rose-500');
+        }
+
+        // Email Validation
+        if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+          emailError.classList.remove('hidden');
+          emailInput.classList.add('border-rose-500');
+          isValid = false;
+        } else {
+          emailError.classList.add('hidden');
+          emailInput.classList.remove('border-rose-500');
+        }
+
+        // Message Validation
+        if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
+          messageError.classList.remove('hidden');
+          messageInput.classList.add('border-rose-500');
+          isValid = false;
+        } else {
+          messageError.classList.add('hidden');
+          messageInput.classList.remove('border-rose-500');
+        }
+
+        if (isValid) {
+          // Disable submit button and display spinner
+          submitBtn.disabled = true;
+          btnText.textContent = 'Sending Message...';
+          btnSpinner.classList.remove('hidden');
+
+          // Simulate fast asynchronous submission
+          setTimeout(() => {
+            // Restore button state
+            submitBtn.disabled = false;
+            btnText.textContent = 'Send Inquiry';
+            btnSpinner.classList.add('hidden');
+
+            // Reset inputs
+            form.reset();
+
+            // Display success message
+            successToast.classList.remove('hidden');
+            successToast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Hide success message after 8 seconds
+            setTimeout(() => {
+              successToast.classList.add('hidden');
+            }, 8000);
+          }, 700);
+        }
+      });
+
+      // Clear field errors as user types
+      [nameInput, emailInput, messageInput].forEach(field => {
+        field.addEventListener('input', () => {
+          field.classList.remove('border-rose-500');
+          const errorP = field.parentElement.querySelector('p');
+          if (errorP) errorP.classList.add('hidden');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
